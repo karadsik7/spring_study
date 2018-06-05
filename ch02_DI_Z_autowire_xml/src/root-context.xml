@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+
+	<bean class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+		<property name="driverClass" 
+		          value="oracle.jdbc.driver.OracleDriver"/>
+		<property name="url" 
+		          value="jdbc:oracle:thin:@localhost:1521:xe" />
+		<property name="username" value="spring"/>
+		<property name="password" value="1111"/>
+	</bean> 
+	      
+	<bean id="aClass" class="classes.AClass" autowire="byType">
+	</bean>      
+	
+	<bean id="bClass" class="classes.BClass" autowire="byType">
+	</bean>
+	      
+	<bean id="cClass" class="classes.CClass">
+		<property name="name" value="장동혁"/>
+		<property name="age" value="29"/>
+	</bean>    
+	 
+	<bean id="dClass" class="classes.DClass" autowire="byType">
+	</bean> 
+	
+	<bean id="eClass" class="classes.EClass" autowire="byType">
+	</bean> 
+	      
+</beans>
+
+
+
+
+
+
+
+
