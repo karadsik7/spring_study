@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <!-- 맵퍼는 해당 테이블에 접근해서 쿼리문을 실행하고 resultType 경로의 객체(보통 Vo)로 묶어서 반환해줌 -->
+  <!-- 테이블명 -->
+<mapper namespace="guestbook">
+	<!-- selectList라는 명으로 요청하면 셀렉트태그 내부의 쿼리문 실행 resultType은 bvo타입으로 -->
+  <select id="selectList" parameterType="Map" resultType="bvo">
+  	select * from guestbook
+  	<!-- 태그안에서는 #{}쓰면 인식 못함 쿼리에서만 적용 가능 -->
+  	<!-- xml파일에서 &는 다른 기능 예약자라 and의 기능일 경우 and 또는 &amp;&amp;로 써줘야함 -->
+  	<if test="search_text != null and search_option != 'all'">
+  		<choose>
+  			<when test="search_option == 'name'">where writer = #{search_text}</when>
+  			<when test="search_option == 'msg'">where msg like '%'||#{search_text}||'%'</when>
+  			<otherwise>where msg like '%'||#{search_text}||'%' or writer = #{search_text}</otherwise>
+  		</choose>
+  	</if>
+  	order by id desc
+  </select>
+  
+  <insert id="add" parameterType="bvo">
+	insert into guestbook values(seq_guestbook_id.nextval, 
+	#{password}, #{msg}, #{writer}, #{ip}, systimestamp(0))
+  </insert>
+  
+  <delete id="del" parameterType="int">
+  	delete from guestbook where id = #{value}
+  </delete>
+  
+  <select id="selectOne" parameterType="int" resultType="bvo">
+  	select * from guestbook where id = #{value}
+  </select>
+  
+  <update id="modify" parameterType="bvo">
+  	update guestbook set password = #{password}, msg = #{msg}, writer = #{writer} where id = #{id}
+  </update>
+  
+  <select id="getPassword" parameterType="int" resultType="String">
+  	select password from guestbook where id = #{value}
+  </select>
+  
+  <select id="getWriterCheck" parameterType="String" resultType="int">
+  	select count(*) as result from guestbook where writer = #{value}
+  </select>
+  
+</mapper>

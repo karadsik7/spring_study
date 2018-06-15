@@ -1,0 +1,83 @@
+@charset "UTF-8";
+
+*{margin : 0}
+.main{
+	width : 400px;
+	margin : 0 auto;
+}
+.title{
+	text-align : center;
+	font-size : 25pt;
+	color : #444;
+	/*text-shadow 문법 : x, y, spread(번짐), color*/
+	text-shadow: 3px 3px 5px olive;
+	margin-top : 20px;
+}
+button.big{
+	display : block;
+	width : 150px;
+	height : 30px;
+	/* 가운데정렬 하기 위함 */
+	margin : 0 auto;
+	background-color: black;
+	color : white;
+	border : none;
+	/* 테두리 굴곡 지정 */
+	border-radius: 50px;
+	box-shadow: 5px 5px 10px gray;
+}
+hr{
+	margin : 10px 0;
+}
+
+button.smaLL{
+	display : inline-block;
+	width : 45%;
+	height : 30px;
+	/* 가운데정렬 하기 위함 */
+	margin : 0 auto;
+	background-color: #483dff;
+	color : white;
+	border : none;
+	/* 테두리 굴곡 지정 */
+	border-radius: 50px;
+}
+
+.comment{
+	height : 200px;
+	box-shadow: 5px 5px 20px maroon;
+	background: #f4ffff;
+	margin : 20px 0;
+}
+
+.comment>div{
+	border : 1px solid #ff9d6d;
+	padding : 5px;
+}
+.grid_3_7{
+	display: grid;
+	grid-template-columns: 30% 70%;
+}
+.msg{
+	min-height: 80px;
+	height: auto;
+}
+
+.text_center{
+	text-align: center;
+}
+
+.search{
+	text-align: right;
+	height: 25px;
+	margin-top: 20px;
+}
+
+.search select{
+	height: 100%;
+}
+
+.search input[type="text"]{
+	height: 75%;
+	width: 70px;
+}
