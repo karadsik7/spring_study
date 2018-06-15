@@ -1,0 +1,61 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<!-- maven 버전 -->
+	<modelVersion>4.0.0</modelVersion>
+	<!-- 조직 이름(domain을 주로 사용함) -->
+	<groupId>com.inc</groupId>
+	<!-- 프로젝트 이름 -->
+	<artifactId>calc</artifactId>
+	<!-- 프로젝트 버전 -->
+	<version>1.0.0-SNAPSHOT</version>
+	<!-- 프로젝트 이름(설명) -->
+	<name>계산기 프로젝트</name>
+	<!-- 프로젝트 설명 -->
+	<description>계산기의 기능 : xxxxxxxxxxxxxxx, xxxxxxx, xxxxxx</description>
+	<!-- 프로젝트에서 사용할 (환경)변수 -->
+	<properties>
+		<java.version>9</java.version>
+	</properties>
+	<!-- 빌드에 관련한 설정 -->
+	<!-- 오버라이딩 -->
+	<build>
+		<!-- finalName : 패키지했을 때 최종적으로 배포되는 파일의 파일명 -->
+		<finalName>calc</finalName>
+		<!-- 사용자 지정 경로 설정 -->
+			<!-- 소스 디렉토리 경로 설정 -->
+			<sourceDirectory>src/java</sourceDirectory>
+			<!-- 리소스 경로 설정 -->
+			<resources>
+				<resource>
+					<directory>src/resources</directory>
+				</resource>	
+			</resources>
+			<!-- 테스트 경로 설정 -->
+			<testSourceDirectory>test/java</testSourceDirectory>
+		<!-- 플러그인에 대한 설정정보 -->
+		<plugins>
+			<plugin>
+				<!-- 컴파일러 플러그인 버전 수정 -->
+				<!-- <groupId>org.apache.maven</groupId> --> <!-- 메이븐 그룹아이디는 생략가능 -->
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<!-- 소스와 타겟 수정 -->
+					<!-- 환경 변수 (위에서 지정한 properties태그 내부의 변수명으로 호출하여 설정하면 편리) -->
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<!-- 현재 프로젝트에서 의존하고 있는 라이브러리 정보 -->
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+</project>
