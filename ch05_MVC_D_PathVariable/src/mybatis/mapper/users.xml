@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="users">
+	<select id="getList" resultType="userVo">
+		select * from users
+	</select>
+	<insert id="add" parameterType="userVo">
+		insert into users values(#{id}, #{password}, #{name})
+	</insert>
+	<select id="selectOne" parameterType="String" resultType="userVo">
+		select * from users where id = #{value}
+	</select>
+	<update id="modify" parameterType="userVo">
+		update users set <if test="password!=''">password = #{password},</if>name = #{name} where id = #{id}
+	</update>
+</mapper>
