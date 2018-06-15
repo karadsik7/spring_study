@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+	<!-- DefaultServlet 재등록 : html,css,js,img 등의 정적 파일 요청을 처리
+	<mvc:default-servlet-handler/> -->
+	<!-- 정적 파일 경로 설정을 위한 resources 태그 : css폴더 하위 모든 파일을 클라이언트에서 요청시에
+	/WEB-INF/css로 이동
+	또한 mvc:default-servlet-handler 태그의 기능을 포함하고 있음-->
+	<mvc:resources mapping="/css/**" location="/WEB-INF/css/" />
+	<!-- @Autowired를 위한 설정태그 -->
+	<context:annotation-config />
+	<!-- @MVC를 사용하기 위한 설정태그 -->
+	<mvc:annotation-driven />
+	
+	<!-- 클래스를 자동으로 검색해서 빈으로 등록해주는 기능 -->
+	<context:component-scan base-package="com.inc.controller" />
+	
+	<!--ViewResolver: jsp와 컨트롤러간의 뷰 포워딩과정에서 확장자와 공통경로를 생략할 수 있도록 하는 기능 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views" />
+		
+		<!-- void 리턴형을 쓰려면 suffix도 필요하다 -->
+		<!-- <property name="suffix" value=".jsp" /> -->
+	</bean>
+	
+	<!-- <bean class="com.inc.controller.HelloController"/>
+	<bean class="com.inc.controller.UserController"/> -->
+	
+</beans>
+
+
+
+
