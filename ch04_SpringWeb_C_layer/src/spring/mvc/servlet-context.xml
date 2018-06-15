@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- 컨트롤러는 id가 아닌 name 속성으로 서블릿 경로 지정 -->
+	<bean name="/hello" class="com.inc.controller.HelloController" />
+	<bean name="/user/list" class="com.inc.controller.UserListController">
+		<property name="userService" ref="userService"/>
+	</bean>
+	<bean name="/user/add" class="com.inc.controller.UserAddController">
+		<property name="userService" ref="userService" />
+	</bean>
+</beans>
