@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+  <typeAliases>
+  	<!-- typealias 추가 -->
+  	<package name="com.inc.vo"/>
+  </typeAliases>
+  <mappers>
+    <!-- mapper추가 -->
+    <mapper resource="mybatis/mapper/products.xml"/>
+    <mapper resource="mybatis/mapper/comments.xml"/>
+  </mappers>
+</configuration>
+
+
+
+
+
+
+
+
