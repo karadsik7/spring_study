@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cart">
+	<select id="selectList" parameterType="String" resultMap="cartMap">
+		select * from cart where u_id = #{value} order by id desc
+	</select>
+	<select id="getCount" parameterType="Map" resultType="int" >
+		select count(*) from cart where u_id = #{u_id} and p_id = #{p_id}
+	</select>
+	<insert id="insert" parameterType="Map">
+		insert into cart values(seq_cart_id.nextval, #{p_id}, #{u_id}, 1)
+	</insert>
+	<update id="modify" parameterType="com.inc.vo.CartVo">
+		update cart set count = #{count} where id = #{id}
+	</update>
+	<delete id="delete" parameterType="int">
+		delete from cart where id = #{value}
+	</delete>
+	
+	
+	<!-- ResultMap이 ProductVo라는 Cart 테이블로는 참조할 수 없는 객체를 만들어줌 -->
+	<!-- id값은 위의 resultMap의 값과 동일, type은 결과물의 Vo -->
+	<resultMap id="cartMap" type="cartVo" >
+		<!-- association :  -->
+		<!-- property : 참조로 가져올 값의 변수명, column : 조인할 외래키, 
+		javaType : 참조를 통해 가져오는 값의 타입, select : 사용할  쿼리문의 id-->
+		<association property="pvo" column="p_id" javaType="productVo" select="product.getProductVo"></association>
+	</resultMap>
+	
+</mapper>
