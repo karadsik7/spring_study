@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+	<!-- @Autowired를 위한 설정태그 -->
+	<context:annotation-config />
+	<!-- @MVC를 사용하기 위한 설정태그 -->
+	<mvc:annotation-driven />
+	
+	<bean class="com.inc.controller.HelloController"/>
+	
+	<bean name="/user/list" 
+	      class="com.inc.controller.UserListController">
+	      <property name="userService" ref="userService"/>
+	</bean>
+	
+	<bean name="/user/add" 
+	      class="com.inc.controller.UserAddController">
+	      <property name="userService" ref="userService"/>
+    </bean>
+</beans>
+
+
+
+
